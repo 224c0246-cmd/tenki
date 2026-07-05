@@ -94,7 +94,7 @@ function switchLocation(index) {
   const url = 'https://api.open-meteo.com/v1/forecast'
     + '?latitude=' + loc.lat
     + '&longitude=' + loc.lng
-    + '&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_sum'
+    + '&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_sum,windspeed_10m_max'
     + '&timezone=Asia%2FTokyo';
 
   fetch(url)
@@ -118,6 +118,9 @@ function makePage(data) {
   setData('precipitation_sum0', data.daily.precipitation_sum[0] + 'mm');
   setData('precipitation_sum1', data.daily.precipitation_sum[1] + 'mm');
   setData('precipitation_sum2', data.daily.precipitation_sum[2] + 'mm');
+  setData('windspeed_10m_max0', data.daily.windspeed_10m_max[0] + 'm/s');
+  setData('windspeed_10m_max1', data.daily.windspeed_10m_max[1] + 'm/s');
+  setData('windspeed_10m_max2', data.daily.windspeed_10m_max[2] + 'm/s');
 
   const rainy = data.daily.precipitation_sum[0] > 0;
   document.getElementById('body').style.backgroundColor = rainy ? '#cff' : '#ffc';
